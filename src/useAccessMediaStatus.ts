@@ -8,7 +8,7 @@ export enum AccessDevicesStatus {
 }
 
 const getIsAndroidFbInAppWebView = ()=>{
-return test(/(android)[\w\W]*(FBAV|FBAN)/gi,navigator.userAgent)
+return test(/(android)[\w\W]*(FBAV|FBAN|Instagram)/gi,navigator.userAgent)
 }
 
 const useAccessDevicesStatus = () => {
