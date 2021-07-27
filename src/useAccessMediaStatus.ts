@@ -18,7 +18,9 @@ const useAccessDevicesStatus = () => {
           setAccessDevicesStatus(AccessDevicesStatus.Fail)
         }
         const stream = await navigator.mediaDevices.getUserMedia({ audio: false, video: true })
-        setLog(`${stream}`)
+        if(isNil(stream)){setLog('isNil')}
+        if(isEmpty(stream)){setLog('isNil')}
+        
         const devices = await navigator.mediaDevices.enumerateDevices()
         const cameraList = devices.filter(device => device.kind === 'videoinput')
         const cameraOneLabel = cameraList[0].label
