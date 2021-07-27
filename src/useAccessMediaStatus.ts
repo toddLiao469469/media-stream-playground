@@ -1,5 +1,5 @@
 import { useEffect, useState } from 'react'
-import { isNil, isEmpty } from 'ramda'
+import { isNil, isEmpty,test } from 'ramda'
 export enum AccessDevicesStatus {
   Default = 'DEFAULT',
   Success = 'SUCCESS',
@@ -9,6 +9,7 @@ export enum AccessDevicesStatus {
 const useAccessDevicesStatus = () => {
   const [accessDevicesStatus, setAccessDevicesStatus] = useState<AccessDevicesStatus>(AccessDevicesStatus.Default)
   const [log, setLog] = useState<string>('')
+  const [fbUA, setfbUA] = useState<boolean>()
 
   useEffect(() => {
     const checkMediaLabel = async () => {
@@ -18,9 +19,7 @@ const useAccessDevicesStatus = () => {
           setAccessDevicesStatus(AccessDevicesStatus.Fail)
         }
         const stream = await navigator.mediaDevices.getUserMedia({ audio: false, video: true })
-        if(isNil(stream)){setLog('isNil')}
-        if(isEmpty(stream)){setLog('isNil')}
-        
+        setfbUA(test(/(FBAV|FBAN)/gi,navigator.userAgent))
         const devices = await navigator.mediaDevices.enumerateDevices()
         const cameraList = devices.filter(device => device.kind === 'videoinput')
         const cameraOneLabel = cameraList[0].label
@@ -37,7 +36,7 @@ const useAccessDevicesStatus = () => {
     checkMediaLabel()
   }, [])
 
-  return [accessDevicesStatus,log]
+  return [accessDevicesStatus,fbUA]
 }
 
 export default useAccessDevicesStatus
