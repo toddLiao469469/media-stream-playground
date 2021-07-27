@@ -1,24 +1,22 @@
-import React from 'react';
-import logo from './logo.svg';
-import './App.css';
+import { isEmpty, isNil } from 'ramda';
+import { useState } from 'react';
+import { useMediaStream } from './useMediaStream';
 
-function App() {
+const App = () => {
+  const [errorText, setErrorText] = useState('')
+  const stream = useMediaStream(setErrorText)
+
   return (
-    <div className="App">
-      <header className="App-header">
-        <img src={logo} className="App-logo" alt="logo" />
-        <p>
-          Edit <code>src/App.tsx</code> and save to reload.
-        </p>
-        <a
-          className="App-link"
-          href="https://reactjs.org"
-          target="_blank"
-          rel="noopener noreferrer"
-        >
-          Learn React
-        </a>
-      </header>
+    <div>
+      <pre>
+        {errorText === '' ? 'no error' : errorText}
+      </pre>
+      <pre>
+        {isEmpty(stream) ? 'is empty' : 'is not empty'}
+      </pre>
+      <pre>
+        {isNil(stream) ? 'is nil' : 'is not nil'}
+      </pre>
     </div>
   );
 }
