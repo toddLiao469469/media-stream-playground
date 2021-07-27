@@ -10,6 +10,9 @@ const App = () => {
       <pre>
       accessDevicesStatus:  {accessDevicesStatus}
       </pre>
+      <pre>
+      navigator.userAgent:  {navigator.userAgent}
+      </pre>
     </div>
     
   );
