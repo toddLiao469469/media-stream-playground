@@ -1,5 +1,4 @@
 import useAccessDevicesStatus from './useAccessMediaStatus';
-import {  test } from 'ramda'
 
 const App = () => {
   
