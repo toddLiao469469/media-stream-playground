@@ -7,10 +7,12 @@ const App = () => {
     <div>
       <pre>
       accessDevicesStatus:  {accessDevicesStatus}
+      </pre>
+      <pre>
       log:{log}
       </pre>
-      
     </div>
+    
   );
 }
 
