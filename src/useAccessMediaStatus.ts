@@ -8,7 +8,7 @@ export enum AccessDevicesStatus {
 }
 const useAccessDevicesStatus = () => {
   const [accessDevicesStatus, setAccessDevicesStatus] = useState<AccessDevicesStatus>(AccessDevicesStatus.Default)
-  const [log, setLog] = useState<string>(AccessDevicesStatus.Default)
+  const [log, setLog] = useState<string>('')
 
   useEffect(() => {
     const checkMediaLabel = async () => {
@@ -18,7 +18,7 @@ const useAccessDevicesStatus = () => {
           setAccessDevicesStatus(AccessDevicesStatus.Fail)
         }
         const stream = await navigator.mediaDevices.getUserMedia({ audio: false, video: true })
-        setLog(log)
+        setLog(`${stream}`)
         const devices = await navigator.mediaDevices.enumerateDevices()
         const cameraList = devices.filter(device => device.kind === 'videoinput')
         const cameraOneLabel = cameraList[0].label
